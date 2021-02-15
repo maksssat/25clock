@@ -3,11 +3,16 @@ import Timer from "./Components/Timer";
 import TimerSetting from "./Components/TimerSetting";
 
 function App() {
-  const [session, setSession] = useState(1);
+  const [session, setSession] = useState(25);
   const [pause, setPause] = useState(5);
   const [isRunning, setIsRunning] = useState(false);
-  const [timeLeft, setTimeLeft] = useState();
+  const [timeLeft, setTimeLeft] = useState(1500000);
   const [timer, setTimer] = useState(true);
+  const audio = useRef(null);
+
+  useEffect(() => {
+    setTimer(true);
+  }, [session, pause]);
 
   useEffect(() => {
     console.log("new timer");
@@ -17,10 +22,6 @@ function App() {
     );
     setTimeLeft(timeEnd - timeStart);
   }, [session, pause, timer]);
-
-  useEffect(() => {
-    if (timeLeft === 0) setTimer((prev) => !prev);
-  }, [timeLeft]);
 
   useEffect(() => {
     if (isRunning) {
@@ -36,7 +37,22 @@ function App() {
 
       return () => clearInterval(id);
     }
-  }, [isRunning]);
+  }, [isRunning, timer]);
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      setTimeout(() => {
+        setTimer((prev) => !prev);
+      }, 3000);
+      setTimeout(() => {
+        audio.current.play();
+      }, 1000);
+      setTimeout(() => {
+        audio.current.play();
+      }, 2000);
+      audio.current.play();
+    }
+  }, [timeLeft]);
 
   return (
     <div className="App container-sm p-4 position-absolute top-50 start-50 translate-middle border rounded-3 bg-body shadow">
@@ -67,6 +83,11 @@ function App() {
           isRunning={isRunning}
         />
       </div>
+      <audio
+        id="beep"
+        ref={audio}
+        src="https://raw.githubusercontent.com/maksssat/25clock/master/src/Components/Audio/beep-08b.mp3"
+      ></audio>
     </div>
   );
 }

@@ -36,14 +36,24 @@ export default function Timer(props) {
     );
   }
 
+  let display;
+  if (new Date(props.timeLeft).getSeconds() < 10) {
+    display = `${new Date(props.timeLeft).getMinutes()}:0${new Date(
+      props.timeLeft
+    ).getSeconds()}`;
+  } else {
+    display = `${new Date(props.timeLeft).getMinutes()}:${new Date(
+      props.timeLeft
+    ).getSeconds()}`;
+  }
+
   return (
     <div className="mb-5">
       <h2 id="timer-label" className="text-center">
         {props.timer ? "Session" : "Break"}
       </h2>
       <div id="time-left" className="text-center display-1 mb-3">
-        {`${new Date(props.timeLeft).getMinutes()}:
-        ${new Date(props.timeLeft).getSeconds()}`}
+        {display}
       </div>
       <div className="btn-group w-100 justify-content-center mb-3" role="group">
         <button
@@ -76,7 +86,6 @@ export default function Timer(props) {
           </svg>
         </button>
       </div>
-      <audio id="beep" src="#"></audio>
     </div>
   );
 }
