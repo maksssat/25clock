@@ -1,23 +1,32 @@
 export default function TimerSetting(props) {
+  const handleDecrementClick = () => {
+    if (props.display > 1) props.onClick((prev) => prev - 1);
+  };
+
+  const handleIncrementClick = () => {
+    if (props.display < 60) props.onClick((prev) => prev + 1);
+  };
+
   return (
     <div className="col-sm">
       <h2 id={`${props.id}-label`} className="text-center">
         {props.title}
       </h2>
-      <div id={`${props.id}-length`} className="text-center display-1 mb-3">
-        {props.display}
+      <div id={`${props.id}-length`} className="text-center display-2 mb-3">
+        {`${props.display}:00`}
       </div>
       <div className="btn-group w-100 justify-content-center mb-3" role="group">
         <button
           id={`${props.id}-decrement`}
           className="btn btn-primary p-2 flex-grow-0 w-25"
           type="button"
-          onClick={() => props.onClick((prev) => prev - 1)}
+          onClick={handleDecrementClick}
+          disabled={props.isRunning}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
+            width="25"
+            height="25"
             fill="currentColor"
             className="bi bi-chevron-down"
             viewBox="0 0 16 16"
@@ -32,12 +41,13 @@ export default function TimerSetting(props) {
           id={`${props.id}-increment`}
           className="btn btn-primary p-2 flex-grow-0 w-25"
           type="button"
-          onClick={() => props.onClick((prev) => prev + 1)}
+          onClick={handleIncrementClick}
+          disabled={props.isRunning}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
+            width="25"
+            height="25"
             fill="currentColor"
             className="bi bi-chevron-up"
             viewBox="0 0 16 16"
