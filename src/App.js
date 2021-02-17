@@ -44,15 +44,14 @@ function App() {
       setTimeout(() => {
         setTimer((prev) => !prev);
       }, 3000);
-      setTimeout(() => {
-        audio.current.play();
-      }, 1000);
-      setTimeout(() => {
-        audio.current.play();
-      }, 2000);
       audio.current.play();
     }
   }, [timeLeft]);
+
+  const audioStop = () => {
+    audio.current.pause();
+    audio.current.currentTime = 0;
+  };
 
   return (
     <div className="App container-sm p-4 position-absolute top-50 start-50 translate-middle border rounded-3 bg-body shadow">
@@ -65,6 +64,7 @@ function App() {
         timeLeft={timeLeft}
         timer={timer}
         setTimer={setTimer}
+        audioStop={audioStop}
       />
       <div className="row">
         <TimerSetting
@@ -85,7 +85,7 @@ function App() {
       <audio
         id="beep"
         ref={audio}
-        src="https://raw.githubusercontent.com/maksssat/25clock/master/src/Components/Audio/beep-08b.mp3"
+        src="https://raw.githubusercontent.com/maksssat/25clock/master/src/Components/Audio/Alarm-ringtone.mp3"
       ></audio>
     </div>
   );
