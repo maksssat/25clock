@@ -36,16 +36,12 @@ export default function Timer(props) {
     );
   }
 
-  let display;
-  if (new Date(props.timeLeft).getSeconds() < 10) {
-    display = `${new Date(props.timeLeft).getMinutes()}:0${new Date(
-      props.timeLeft
-    ).getSeconds()}`;
-  } else {
-    display = `${new Date(props.timeLeft).getMinutes()}:${new Date(
-      props.timeLeft
-    ).getSeconds()}`;
-  }
+  const minutes =
+    props.timeLeft === 3600000 ? 60 : new Date(props.timeLeft).getMinutes();
+  const seconds = new Date(props.timeLeft).getSeconds();
+
+  const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
+  const secondsStr = seconds < 10 ? `0${seconds}` : seconds;
 
   return (
     <div className="mb-5">
@@ -53,7 +49,7 @@ export default function Timer(props) {
         {props.timer ? "Session" : "Break"}
       </h2>
       <div id="time-left" className="text-center display-1 mb-3">
-        {display}
+        {`${minutesStr}:${secondsStr}`}
       </div>
       <div className="btn-group w-100 justify-content-center mb-3" role="group">
         <button

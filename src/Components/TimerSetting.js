@@ -13,7 +13,7 @@ export default function TimerSetting(props) {
         {props.title}
       </h2>
       <div id={`${props.id}-length`} className="text-center display-2 mb-3">
-        {`${props.display}:00`}
+        {props.display}
       </div>
       <div className="btn-group w-100 justify-content-center mb-3" role="group">
         <button

@@ -58,7 +58,6 @@ function App() {
     <div className="App container-sm p-4 position-absolute top-50 start-50 translate-middle border rounded-3 bg-body shadow">
       <h1 className="text-center display-2 mb-5">25 + 5 Clock</h1>
       <Timer
-        display={session}
         isRunning={isRunning}
         setIsRunning={setIsRunning}
         setSession={setSession}
