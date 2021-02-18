@@ -43,7 +43,7 @@ function App() {
     if (timeLeft === 0) {
       setTimeout(() => {
         setTimer((prev) => !prev);
-      }, 3000);
+      }, 5000);
       audio.current.play();
     }
   }, [timeLeft]);
