@@ -61,10 +61,11 @@ function App() {
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           setSession={setSession}
+          setTimeLeft={setTimeLeft}
           setPause={setPause}
+          setTimer={setTimer}
           timeLeft={timeLeft}
           timer={timer}
-          setTimer={setTimer}
           audioStop={audioStop}
         />
         <div className="row my-3">

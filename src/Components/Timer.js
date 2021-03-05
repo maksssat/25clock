@@ -5,6 +5,7 @@ export default function Timer(props) {
     props.setSession(25);
     props.setTimer(true);
     props.audioStop();
+    props.setTimeLeft(1500000);
   };
 
   let icon;
