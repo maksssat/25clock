@@ -45,7 +45,7 @@ export default function Timer(props) {
   const secondsStr = seconds < 10 ? `0${seconds}` : seconds;
 
   return (
-    <div className="mb-5">
+    <div className="my-5">
       <h2 id="timer-label" className="text-center">
         {props.timer ? "Session" : "Break"}
       </h2>

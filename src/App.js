@@ -54,39 +54,41 @@ function App() {
   };
 
   return (
-    <div className="App container-sm p-4 position-absolute top-50 start-50 translate-middle border rounded-3 bg-body shadow">
-      <h1 className="text-center display-2 mb-5">25 + 5 Clock</h1>
-      <Timer
-        isRunning={isRunning}
-        setIsRunning={setIsRunning}
-        setSession={setSession}
-        setPause={setPause}
-        timeLeft={timeLeft}
-        timer={timer}
-        setTimer={setTimer}
-        audioStop={audioStop}
-      />
-      <div className="row">
-        <TimerSetting
-          onClick={setSession}
-          display={session}
-          title={"Session Length"}
-          id={"session"}
+    <div className="container">
+      <div className="App p-4 border rounded-3 bg-body shadow">
+        <h1 className="text-center display-2 my-3">25 + 5 Clock</h1>
+        <Timer
           isRunning={isRunning}
+          setIsRunning={setIsRunning}
+          setSession={setSession}
+          setPause={setPause}
+          timeLeft={timeLeft}
+          timer={timer}
+          setTimer={setTimer}
+          audioStop={audioStop}
         />
-        <TimerSetting
-          onClick={setPause}
-          display={pause}
-          title={"Break Length"}
-          id={"break"}
-          isRunning={isRunning}
-        />
+        <div className="row my-3">
+          <TimerSetting
+            onClick={setSession}
+            display={session}
+            title={"Session Length"}
+            id={"session"}
+            isRunning={isRunning}
+          />
+          <TimerSetting
+            onClick={setPause}
+            display={pause}
+            title={"Break Length"}
+            id={"break"}
+            isRunning={isRunning}
+          />
+        </div>
+        <audio
+          id="beep"
+          ref={audio}
+          src="https://raw.githubusercontent.com/maksssat/25clock/master/src/Components/Audio/Alarm-ringtone.mp3"
+        ></audio>
       </div>
-      <audio
-        id="beep"
-        ref={audio}
-        src="https://raw.githubusercontent.com/maksssat/25clock/master/src/Components/Audio/Alarm-ringtone.mp3"
-      ></audio>
     </div>
   );
 }
